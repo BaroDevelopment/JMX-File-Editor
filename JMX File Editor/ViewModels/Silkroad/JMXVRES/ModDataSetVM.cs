@@ -27,7 +27,7 @@ namespace JMXFileEditor.ViewModels.Silkroad.JMXVRES
                     e.Obj?.GetType(), e.Obj));
             });
             // Create nodes
-            Childs.Add(new JMXAttribute("Type", DataSet.Type));
+            Childs.Add(new JMXOption("Type", DataSet.Type, JMXOption.GetValues<object>(typeof(ModDataSetType))));
             Childs.Add(new JMXOption("AnimationType", DataSet.AnimationType, JMXOption.GetValues<object>(typeof(PrimAnimationType))));
             Childs.Add(new JMXAttribute("Name", DataSet.Name));
             AddChildArray("ModsData", DataSet.ModData.ToArray(), true, true);
@@ -39,7 +39,7 @@ namespace JMXFileEditor.ViewModels.Silkroad.JMXVRES
         {
             ModDataSet obj = new ModDataSet()
             {
-                Type = (int)((JMXAttribute)Structure.Childs[0]).Value,
+                Type = (ModDataSetType)((JMXOption)Structure.Childs[0]).Value,
                 AnimationType = (PrimAnimationType)((JMXOption)Childs[1]).Value,
                 Name = (string)((JMXAttribute)Structure.Childs[2]).Value,
                 ModData = ((JMXStructure)Structure.Childs[3]).GetChildList<IModData>()

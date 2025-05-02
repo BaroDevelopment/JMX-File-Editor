@@ -10,12 +10,13 @@ using JMXFileEditor.ViewModels.Silkroad.JMXVCPD;
 using JMXFileEditor.ViewModels.Silkroad.JMXVDOF;
 using JMXFileEditor.ViewModels.Silkroad.JMXVEFF;
 using JMXFileEditor.ViewModels.Silkroad.JMXVRES;
+using JMXFileEditor.ViewModels.Silkroad.JMXVENVI;
+
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Input;
-using JMXFileEditor.ViewModels.Silkroad.JMXVENVI;
 
 namespace JMXFileEditor.ViewModels
 {
@@ -141,13 +142,11 @@ namespace JMXFileEditor.ViewModels
                         var jmxFile = LoadJMXFile(FileProperties);
 
                         // Set temporal filename
-                        var filename = GetCopyFileName(Path.GetFileNameWithoutExtension(FilePath),jmxFile.Extension,Path.GetDirectoryName(FilePath));
-                        var folderPath = Window.OpenFolderDialog("Save...", ref filename, Path.GetDirectoryName(FilePath));
+                        var filename = Path.GetFileNameWithoutExtension(FilePath) + "." + jmxFile.Extension;
+                        var filePath = Window.SaveFileDialog("Save as...", filename, jmxFile.Extension.ToUpperInvariant() + " files (*." + jmxFile.Extension + ")|*." + jmxFile.Extension + "|All Files (*.*)|*.*", Path.GetDirectoryName(FilePath));
                         // check paths are correct
-                        if (folderPath == string.Empty)
+                        if (filePath == string.Empty)
                             return;
-                        // Search for a path if is not specified
-                        var filePath = Path.Combine(folderPath, filename);
                         // Save it
                         jmxFile.Save(filePath);
                         // Update values changed in the process
@@ -285,21 +284,6 @@ namespace JMXFileEditor.ViewModels
 
             // format not implemented
             throw new NotImplementedException();
-        }
-        /// <summary>
-        /// Make a copy from filename the same way as Microsoft
-        /// </summary>
-        private string GetCopyFileName(string fileName, string extension, string dirName)
-        {
-            var copyFileName = $"{fileName} - Copy.{extension}";
-            var path = Path.Combine(dirName, copyFileName);
-            var n = 2;
-            while (File.Exists(path))
-            {
-                copyFileName = $"{fileName} - Copy ({n++}).{extension}";
-                path = Path.Combine(dirName, copyFileName);
-            }
-            return copyFileName;
         }
         #endregion
     }
