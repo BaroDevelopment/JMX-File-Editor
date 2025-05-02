@@ -402,6 +402,7 @@
     <Compile Include="Silkroad\Data\JMXVENVI\EnvironmentNode.cs" />
     <Compile Include="Silkroad\Data\JMXVENVI\EnvironmentProfile.cs" />
     <Compile Include="Silkroad\Data\JMXVENVI\JMXVENVI.cs" />
+    <Compile Include="Silkroad\Data\JMXVRES\ModData\ModDataSetType.cs" />
     <Compile Include="Silkroad\Data\JMXVRES\ModData\ModDataBumpEnv.cs" />
     <Compile Include="Silkroad\Data\JMXVRES\ModData\ModDataDyJoint.cs" />
     <Compile Include="Silkroad\Data\JMXVRES\ModData\ModDataDyLattice.cs" />
