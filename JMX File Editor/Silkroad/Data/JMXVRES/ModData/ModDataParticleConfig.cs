@@ -12,7 +12,7 @@ namespace JMXFileEditor.Silkroad.Data.JMXVRES.ModData
         public Vector3 Position { get; set; } = new Vector3();
         public uint BirthTime { get; set; }
         public byte UnkByte01 { get; set; }
-        public byte UnkByte02 { get; set; }
+        public byte IsNocturne { get; set; }
         public byte UnkByte03 { get; set; }
         public byte UnkByte04 { get; set; }
         public Vector3 UnkVector01 { get; set; } = new Vector3();
@@ -27,7 +27,7 @@ namespace JMXFileEditor.Silkroad.Data.JMXVRES.ModData
             this.Position = reader.ReadVector3();
             this.BirthTime = reader.ReadUInt32();
             this.UnkByte01 = reader.ReadByte();
-            this.UnkByte02 = reader.ReadByte();
+            this.IsNocturne = reader.ReadByte();
             this.UnkByte03 = reader.ReadByte();
             this.UnkByte04 = reader.ReadByte();
             if (this.UnkByte04 == 1)
@@ -41,7 +41,7 @@ namespace JMXFileEditor.Silkroad.Data.JMXVRES.ModData
             writer.Write(this.Position);
             writer.Write(this.BirthTime);
             writer.Write(this.UnkByte01);
-            writer.Write(this.UnkByte02);
+            writer.Write(this.IsNocturne);
             writer.Write(this.UnkByte03);
             writer.Write(this.UnkByte04);
             if (this.UnkByte04 == 1)

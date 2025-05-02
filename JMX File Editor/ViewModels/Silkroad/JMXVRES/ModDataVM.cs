@@ -349,7 +349,7 @@ namespace JMXFileEditor.ViewModels.Silkroad.JMXVRES
                     Childs.Add(new Vector3VM("Position", Particle.Position));
                     Childs.Add(new JMXAttribute("BirthTime", Particle.BirthTime));
                     Childs.Add(new JMXAttribute("UnkByte01", Particle.UnkByte01));
-                    Childs.Add(new JMXAttribute("UnkByte02", Particle.UnkByte02));
+                    Childs.Add(new JMXAttribute("IsNocturne", Particle.IsNocturne));
                     Childs.Add(new JMXAttribute("UnkByte03", Particle.UnkByte03));
                     Childs.Add(new JMXAttribute("UnkByte04", Particle.UnkByte04));
                     Childs.Add(new Vector3VM("UnkVector01", Particle.UnkVector01));
@@ -364,7 +364,7 @@ namespace JMXFileEditor.ViewModels.Silkroad.JMXVRES
                         Position = (Vector3)((Vector3VM)Structure.Childs[3]).GetClass(),
                         BirthTime = (uint)((JMXAttribute)Structure.Childs[4]).Value,
                         UnkByte01 = (byte)((JMXAttribute)Structure.Childs[5]).Value,
-                        UnkByte02 = (byte)((JMXAttribute)Structure.Childs[6]).Value,
+                        IsNocturne = (byte)((JMXAttribute)Structure.Childs[6]).Value,
                         UnkByte03 = (byte)((JMXAttribute)Structure.Childs[7]).Value,
                         UnkByte04 = (byte)((JMXAttribute)Structure.Childs[8]).Value,
                         UnkVector01 = (Vector3)((Vector3VM)Structure.Childs[9]).GetClass()
