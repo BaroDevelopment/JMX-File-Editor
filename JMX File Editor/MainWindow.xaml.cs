@@ -1,4 +1,5 @@
 ﻿using JMXFileEditor.ViewModels;
+using Microsoft.Win32;
 using System.IO;
 using System.Windows;
 
@@ -25,38 +26,26 @@ namespace JMXFileEditor
         public string OpenFileDialog(string Title, string Filter, string InitialDirectoryPath = "")
         {
             // Build dialog to search the file path
-            var fileBrowserDialog = new Microsoft.Win32.OpenFileDialog();
-            fileBrowserDialog.Title = Title;
-            fileBrowserDialog.Filter = Filter;
-            fileBrowserDialog.InitialDirectory = InitialDirectoryPath;
-            if (fileBrowserDialog.ShowDialog(this) == true)
+            var fileBrowserDialog = new OpenFileDialog
             {
-                return fileBrowserDialog.FileName;
-            }
-            return string.Empty;
+                Title = Title,
+                Filter = Filter,
+                InitialDirectory = InitialDirectoryPath
+            };
+            return fileBrowserDialog.ShowDialog(this) == true ? fileBrowserDialog.FileName : string.Empty;
         }
-
-        public string OpenFolderDialog(string Title, ref string DefaultFilename, string InitialDirectoryPath = "")
+        public string SaveFileDialog(string Title, string FileName, string Filter, string InitialDirectoryPath = "")
         {
-            // Build dialog to search folder path
-            var folderBrowserDialog = new Microsoft.Win32.OpenFileDialog();
-            folderBrowserDialog.Title = Title;
-            folderBrowserDialog.InitialDirectory = InitialDirectoryPath;
-            // setup to fake a folder browser
-            folderBrowserDialog.ValidateNames = !string.IsNullOrEmpty(DefaultFilename);
-            folderBrowserDialog.CheckFileExists = false;
-            folderBrowserDialog.CheckPathExists = true;
-            folderBrowserDialog.FileName = DefaultFilename;
-            if (folderBrowserDialog.ShowDialog(this) == true)
+            // Build dialog to search the file path
+            var fileBrowserDialog = new SaveFileDialog
             {
-                var folderPath = Path.GetDirectoryName(folderBrowserDialog.FileName);
-                DefaultFilename = folderBrowserDialog.FileName.Replace(folderPath+"\\", "");
-                return folderPath;
-            }
-            DefaultFilename = string.Empty;
-            return string.Empty;
+                Title = Title,
+                FileName = FileName,
+                Filter = Filter,
+                InitialDirectory = InitialDirectoryPath
+            };
+            return fileBrowserDialog.ShowDialog(this) == true ? fileBrowserDialog.FileName : string.Empty;
         }
-
         public void ShowMessage(string Title, string Message)
         {
             MessageBox.Show(this, Message, Title, MessageBoxButton.OK, MessageBoxImage.Information);
